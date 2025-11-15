@@ -10,7 +10,7 @@ import {
   Upload,
   LogOut,
   BarChart,
-  FilePdf,
+  File,
   FileCode,
   Search,
 } from 'lucide-react'
@@ -72,7 +72,7 @@ export default function AdminPage() {
   }
 
   function getIcon(type: string) {
-    if (type === 'pdf') return <FilePdf className="w-5 h-5 text-red-500" />
+    if (type === 'pdf') return <File className="w-5 h-5 text-red-500" />
     if (type === 'html') return <FileCode className="w-5 h-5 text-blue-500" />
     return <FileText className="w-5 h-5 text-primary" />
   }
@@ -121,7 +121,7 @@ export default function AdminPage() {
           </div>
           <div className="p-4 bg-surface border border-border rounded-lg">
             <div className="flex items-center gap-3">
-              <FilePdf className="w-8 h-8 text-red-500" />
+              <File className="w-8 h-8 text-red-500" />
               <div>
                 <div className="text-2xl font-bold">
                   {documents.filter(d => d.type === 'pdf').length}

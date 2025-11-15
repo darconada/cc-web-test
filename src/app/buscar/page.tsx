@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { SearchBar } from '@/components/search/SearchBar'
 import { DocumentCard } from '@/components/DocumentCard'
@@ -25,7 +25,7 @@ const FILE_TYPES = [
   { value: 'html', label: 'HTML' },
 ]
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams()
   const initialQuery = searchParams?.get('q') || ''
 
@@ -181,5 +181,20 @@ export default function SearchPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-4xl font-bold mb-4">🔍 Búsqueda Avanzada</h1>
+          <p className="text-text-secondary">Cargando...</p>
+        </div>
+      </div>
+    }>
+      <SearchPageContent />
+    </Suspense>
   )
 }

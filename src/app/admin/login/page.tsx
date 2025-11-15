@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Lock, Eye, EyeOff } from 'lucide-react'
 
 export default function LoginPage() {
@@ -10,6 +10,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -26,7 +27,9 @@ export default function LoginPage() {
       const data = await response.json()
 
       if (response.ok) {
-        router.push('/admin')
+        // Redirect to the original page or default to /admin
+        const redirectTo = searchParams.get('redirect') || '/admin'
+        router.push(redirectTo)
       } else {
         setError(data.error || 'Password incorrecto')
       }

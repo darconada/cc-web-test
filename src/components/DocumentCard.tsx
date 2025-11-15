@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FileText, FilePdf, FileCode, Clock, Star } from 'lucide-react'
+import { FileText, File, FileCode, Clock, Star } from 'lucide-react'
 import type { Document } from '@/types/document'
 
 interface DocumentCardProps {
@@ -9,7 +9,7 @@ interface DocumentCardProps {
 
 export function DocumentCard({ document, highlight = false }: DocumentCardProps) {
   const getIcon = () => {
-    if (document.type === 'pdf') return <FilePdf className="w-5 h-5" />
+    if (document.type === 'pdf') return <File className="w-5 h-5" />
     if (document.type === 'html') return <FileCode className="w-5 h-5" />
     return <FileText className="w-5 h-5" />
   }

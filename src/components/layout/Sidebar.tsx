@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Home, Zap, Star, Library, Search, Shield } from 'lucide-react'
-import { getAllLevels } from '@/lib/documents'
+import { useState, useEffect } from 'react'
+import type { Level } from '@/types/document'
 
 interface SidebarProps {
   isOpen: boolean
@@ -18,7 +19,14 @@ const MAIN_LINKS = [
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname()
-  const levels = getAllLevels()
+  const [levels, setLevels] = useState<Level[]>([])
+
+  useEffect(() => {
+    fetch('/api/levels')
+      .then(res => res.json())
+      .then(data => setLevels(data))
+      .catch(error => console.error('Error loading levels:', error))
+  }, [])
 
   const isActive = (href: string) => pathname === href
 

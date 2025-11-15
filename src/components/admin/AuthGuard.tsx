@@ -20,11 +20,15 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
       if (data.authenticated) {
         setIsAuthenticated(true)
       } else {
-        router.push('/admin/login')
+        // Save current URL to redirect back after login
+        const currentPath = window.location.pathname
+        router.push(`/admin/login?redirect=${encodeURIComponent(currentPath)}`)
       }
     } catch (error) {
       console.error('Auth check failed:', error)
-      router.push('/admin/login')
+      // Save current URL to redirect back after login
+      const currentPath = window.location.pathname
+      router.push(`/admin/login?redirect=${encodeURIComponent(currentPath)}`)
     } finally {
       setIsLoading(false)
     }
