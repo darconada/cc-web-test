@@ -1,0 +1,42 @@
+{
+  "name": "context-engineering-framework",
+  "version": "1.0.0",
+  "description": "AI Context Engineering Framework - Documentation Site",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "next-themes": "^0.3.0",
+    "@monaco-editor/react": "^4.6.0",
+    "react-markdown": "^9.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-toc": "^9.0.0",
+    "rehype-highlight": "^7.0.0",
+    "rehype-slug": "^6.0.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "react-pdf": "^7.7.0",
+    "flexsearch": "^0.7.43",
+    "lucide-react": "^0.344.0",
+    "gray-matter": "^4.0.3",
+    "js-cookie": "^3.0.5",
+    "date-fns": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.3.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.2.0",
+    "@tailwindcss/typography": "^0.5.10"
+  }
+}
