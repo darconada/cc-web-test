@@ -28,8 +28,9 @@ export default function LoginPage() {
 
       if (response.ok) {
         // Redirect to the original page or default to /admin
+        // Use window.location.href to ensure cookie is sent with next request
         const redirectTo = searchParams.get('redirect') || '/admin'
-        router.push(redirectTo)
+        window.location.href = redirectTo
       } else {
         setError(data.error || 'Password incorrecto')
       }
