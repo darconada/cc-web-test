@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La IA Multiplica la Experiencia: Presentación</title>
+    <style>
+        :root {
+            --color-primary: #1e3a8a;
+            --color-primary-light: #3b82f6;
+            --color-secondary: #475569;
+            --color-accent: #0ea5e9;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-background: #ffffff;
+            --color-surface: #f8fafc;
+            --color-surface-alt: #f1f5f9;
+            --color-border: #e2e8f0;
+            --color-success: #10b981;
+            --color-error: #ef4444;
+            --space-2: 0.5rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --font-base: clamp(1rem, 2.2vw, 1.125rem);
+            --font-lg: clamp(1.25rem, 3vw, 1.5rem);
+            --font-xl: clamp(1.5rem, 4vw, 2rem);
+            --font-2xl: clamp(2rem, 5vw, 2.5rem);
+            --font-3xl: clamp(2.5rem, 6vw, 3rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            color: var(--color-text);
+            overflow: hidden;
+            height: 100vh;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            margin: 0 auto;
+            background: var(--color-background);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            padding: var(--space-8);
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow-y: auto;
+            outline: none;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .slide h1 {
+            font-size: var(--font-3xl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-6);
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .slide h2 {
+            font-size: var(--font-2xl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-4);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .slide h3 {
+            font-size: var(--font-xl);
+            color: var(--color-secondary);
+            margin-bottom: var(--space-4);
+            font-weight: 500;
+        }
+
+        .slide h4 {
+            font-size: var(--font-lg);
+            color: var(--color-text);
+            margin-bottom: var(--space-2);
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .slide p, .slide li {
+            font-size: var(--font-base);
+            line-height: 1.7;
+            color: var(--color-text);
+            margin-bottom: var(--space-2);
+        }
+
+        .subtitle {
+            font-size: var(--font-lg);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-8);
+            font-weight: 400;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            margin: var(--space-6) 0;
+            text-align: left;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+
+        .stat-card {
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: var(--font-2xl);
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: var(--font-base);
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
+
+        .evidence-card {
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: var(--space-6);
+            border-left: 4px solid var(--color-accent);
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: var(--space-4);
+        }
+
+        .technique-card {
+            background: var(--color-surface-alt);
+            border-radius: 12px;
+            padding: var(--space-6);
+            text-align: left;
+            border: 1px solid var(--color-border);
+            margin-bottom: var(--space-4);
+        }
+
+        .technique-icon {
+            font-size: var(--font-xl);
+            margin-right: var(--space-2);
+        }
+
+        .week-card {
+            background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-alt) 100%);
+            border-radius: 12px;
+            padding: var(--space-6);
+            text-align: left;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: var(--font-lg);
+            color: var(--color-primary);
+            margin: var(--space-6) 0;
+            padding: var(--space-6);
+            border-left: 4px solid var(--color-accent);
+            background: var(--color-surface);
+            border-radius: 8px;
+            position: relative;
+            text-align: left;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--color-accent);
+            position: absolute;
+            top: -10px;
+            left: var(--space-4);
+            opacity: 0.3;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, transparent 40%, var(--color-accent) 40%, var(--color-accent) 60%, transparent 60%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            animation: highlight 2s ease-in-out forwards;
+            padding: 0 var(--space-2);
+            font-weight: 600;
+        }
+
+        @keyframes highlight {
+            to {
+                background-position: 0 0;
+            }
+        }
+
+        .problem-vs-reality {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+
+        .problem-box {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: var(--space-6);
+            text-align: left;
+        }
+
+        .reality-box {
+            background: #f0fdf4;
+            border: 2px solid var(--color-success);
+            border-radius: 12px;
+            padding: var(--space-6);
+            text-align: left;
+        }
+
+        .analogy-section {
+            background: var(--color-surface-alt);
+            border-radius: 16px;
+            padding: var(--space-8);
+            margin: var(--space-6) 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .styled-list {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            position: relative;
+            padding-left: var(--space-6);
+            margin-bottom: var(--space-4);
+        }
+
+        .styled-list li::before {
+            content: '→';
+            color: var(--color-accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .visual-metaphor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-8);
+            margin: var(--space-8) 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--space-4);
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--space-4) var(--space-6);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: var(--space-2) var(--space-6);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: var(--font-base);
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.4);
+        }
+
+        .nav-btn:disabled {
+            background: var(--color-text-light);
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none;
+        }
+
+        .slide-counter {
+            background: var(--color-surface);
+            color: var(--color-primary);
+            padding: var(--space-2) var(--space-4);
+            border-radius: 20px;
+            font-size: var(--font-base);
+            font-weight: 600;
+            border: 1px solid var(--color-border);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 1001;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .text-success { color: var(--color-success); }
+        .text-error { color: var(--color-error); }
+        .text-accent { color: var(--color-accent); }
+
+        @media (max-width: 768px) {
+            .slide {
+                width: 95%;
+                padding: var(--space-4);
+                height: 90vh;
+            }
+            .two-column, .problem-vs-reality, .three-column {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+            .navigation {
+                padding: var(--space-2) var(--space-4);
+            }
+            .visual-metaphor {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff !important;
+                overflow: visible !important;
+            }
+            .presentation-container {
+                height: auto;
+            }
+            .slide {
+                display: block !important;
+                height: auto !important;
+                box-shadow: none !important;
+                page-break-after: always;
+                border: none;
+            }
+            .navigation, .progress-bar {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="presentation-container">
+        <!-- Slide 1: Título -->
+        <section class="slide active" role="region" aria-labelledby="slide1-title" tabindex="-1">
+            <h1 id="slide1-title">La IA Multiplica la Experiencia</h1>
+            <h2 class="subtitle">Por Qué los Seniors Tienen la Ventaja</h2>
+            
+            <div style="margin: 2rem 0;">
+                <img src="senior-con-ia.png" 
+                     alt="Senior trabajando sin IA (oscuro) vs con IA (iluminado)" 
+                     style="max-width: 50%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+            </div>
+
+            <div class="quote">
+                La IA no reemplaza la pericia; <span class="highlight">la multiplica</span>
+            </div>
+            <p style="margin-top: var(--space-4); font-size: var(--font-lg);">
+                Como la luz de una lámpara: no hace el trabajo, pero <strong>ilumina al experto</strong> para que lo haga mejor
+            </p>
+        </section>
+
+        <!-- Slide 2: Meteorito -->
+        <section class="slide" role="region" aria-labelledby="slide2-title" tabindex="-1">
+            <h2 id="slide2-title">El Meteorito Ya Cayó</h2>
+            <div class="analogy-section">
+                <h3>🦕 Dinosaurios y Adaptación</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Los que se extinguieron:</h4>
+                        <ul class="styled-list">
+                            <li>Se aferraron a métodos obsoletos</li>
+                            <li>Negaron el cambio del entorno</li>
+                            <li>No desarrollaron nuevas capacidades</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Los que evolucionaron:</h4>
+                        <ul class="styled-list">
+                            <li>Adaptaron sus estrategias</li>
+                            <li>Desarrollaron nuevas habilidades</li>
+                            <li>Aprovecharon el nuevo entorno</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="quote">
+                Los dinosaurios más exitosos fueron los que <strong>desarrollaron nuevas capacidades</strong>
+            </div>
+        </section>
+
+        <!-- Slide 3: El Verdadero Desafío -->
+        <section class="slide" role="region" aria-labelledby="slide3-title" tabindex="-1">
+            <h2 id="slide3-title">El Verdadero Desafío: Contexto, No Capacidad</h2>
+            <div class="content-wrapper">
+                <div class="two-column">
+                    <div class="technique-card">
+                        <h4>🔍 Síntoma común:</h4>
+                        <p style="font-weight: 600; margin-bottom: var(--space-4);">"La IA no entiende mi contexto único"</p>
+                        <p><strong>Causas frecuentes:</strong></p>
+                        <ul class="styled-list">
+                            <li>Prompts genéricos sin contexto</li>
+                            <li>Expectativas de entendimiento automático</li>
+                            <li>Intentos aislados sin iteración</li>
+                            <li>Falta de estructura en la entrada</li>
+                        </ul>
+                    </div>
+                    <div class="technique-card">
+                        <h4>💡 La diferencia clave:</h4>
+                        <p style="font-weight: 600; margin-bottom: var(--space-4);">Estructurar el contexto adecuadamente</p>
+                        <p><strong>Elementos que transforman resultados:</strong></p>
+                        <ul class="styled-list">
+                            <li>Context engineering específico del dominio</li>
+                            <li>La experiencia senior como ventaja competitiva</li>
+                            <li>Tu conocimiento = training data operativo</li>
+                            <li>Iteración con criterio experto</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="quote" style="margin-top: var(--space-6);">
+                    El problema no es la capacidad de la IA, sino <strong>cómo le proporcionamos el contexto</strong> que necesita para ser útil
+                </div>
+                
+                <p style="text-align: center; margin-top: var(--space-4); font-size: var(--font-lg);">
+                    Los seniors que obtienen valor masivo de IA comparten un patrón: dominan el <strong>context engineering</strong> específico de su dominio.
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 4: Context Engineering EXPANDIDA -->
+        <section class="slide" role="region" aria-labelledby="slide4-title" tabindex="-1">
+            <h2 id="slide4-title">Context Engineering: El Superpoder de los Seniors</h2>
+            <div class="content-wrapper">
+                <p>Los <strong>staff+ engineers</strong> obtienen valor masivo porque comprenden que la IA brilla al crear prototipos rápidos, validar arquitecturas y ejecutar experimentos que iluminan el camino para otros.</p>
+                
+                <div class="analogy-section" style="margin: var(--space-6) 0;">
+                    <h3>🔑 Por qué los seniors tienen ventaja:</h3>
+                    <div class="two-column">
+                        <div>
+                            <h4>Conocimiento del dominio</h4>
+                            <ul class="styled-list">
+                                <li>Saben <strong>QUÉ</strong> contexto es relevante</li>
+                                <li>Conocen los edge cases críticos</li>
+                                <li>Entienden las restricciones reales</li>
+                                <li>Dominan el lenguaje del dominio</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Capacidad de integración</h4>
+                            <ul class="styled-list">
+                                <li>Diseñan sistemas complejos</li>
+                                <li>Entienden trade-offs organizativos</li>
+                                <li>Implementan políticas de verificación</li>
+                                <li>Saben qué automatizar y qué no</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>La diferencia no es el nivel, sino <span class="highlight">cómo estructuran el sistema alrededor de la IA</span>.</p>
+                <p style="margin-top: var(--space-4);"><strong>Estas ideas no son teoría: veamos evidencia empírica…</strong></p>
+            </div>
+        </section>
+
+        <!-- Slide 5: Evidencia Empírica -->
+        <section class="slide" role="region" aria-labelledby="slide5-title" tabindex="-1">
+            <h2 id="slide5-title">Evidencia Empírica – Casos Reales</h2>
+            <div class="content-wrapper">
+                <div class="evidence-card">
+                    <h4>🚀 AlphaDev (Nature 2023)</h4>
+                    <p><strong>+70% velocidad en sorting</strong> – integrado en <em>libc++</em></p>
+                    <p class="text-accent">Optimiza algoritmos que humanos no habían descubierto en décadas</p>
+                </div>
+                <div class="evidence-card">
+                    <h4>🔍 Meta RCA (Meta Engineering 2024)</h4>
+                    <p><strong>42% acierto en investigación inicial</strong> de incidentes complejos</p>
+                    <p class="text-accent">Análisis de causa raíz en sistemas distribuidos a escala</p>
+                </div>
+                <div class="evidence-card">
+                    <h4>📊 Estudio MIT (Science 2023)</h4>
+                    <p><strong>−40% tiempo, +18% calidad</strong> en tareas de programación</p>
+                    <p class="text-accent">Todos los niveles se benefician cuando combinan experiencia con IA</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Técnicas Transformadoras -->
+        <section class="slide" role="region" aria-labelledby="slide6-title" tabindex="-1">
+            <h2 id="slide6-title">Técnicas que Transforman Resultados</h2>
+            <div class="content-wrapper">
+                <div class="technique-card">
+                    <h4><span class="technique-icon">🔧</span> RAG (Retrieval Augmented Generation)</h4>
+                    <p>Conecta tu documentación, runbooks, postmortems y configuraciones a un sistema de recuperación.</p>
+                    <p class="text-accent"><em>Ejemplo:</em> "Busca en nuestros últimos 20 postmortems de latencia en Redis y dame patrones comunes de configuración problemática".</p>
+                </div>
+                <div class="technique-card">
+                    <h4><span class="technique-icon">🔗</span> MCP (Model Context Protocol)</h4>
+                    <p>Estándar abierto para enchufar datos y herramientas y dar <em>contexto vivo</em> a los LLMs.</p>
+                    <p class="text-accent"><em>Ejemplo:</em> "Conecta monitoring, tickets y git para que la IA correlacione deploys con incidentes automáticamente".</p>
+                </div>
+                <div class="technique-card">
+                    <h4><span class="technique-icon">🎯</span> Few-shot Prompting</h4>
+                    <p>Proporciona ejemplos de casos similares; tu experiencia se convierte en <em>training data</em> operativo.</p>
+                    <p class="text-accent"><em>Ejemplo:</em> "Configuré este peer BGP [config sanitizada]. Configura este otro datacenter siguiendo el mismo patrón de seguridad y <em>failover</em>".</p>
+                </div>
+                <div class="technique-card">
+                    <h4><span class="technique-icon">🧠</span> Razonamiento Paso a Paso</h4>
+                    <p>Pide que explique los pasos de su razonamiento; revisa y valida cada fase con tu criterio experto.</p>
+                    <p class="text-accent"><em>Ejemplo:</em> "Explica paso a paso cómo depurarías un <em>memory leak</em> en producción, incluyendo qué métricas revisarías primero y por qué".</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Analogía del Ajedrez -->
+        <section class="slide" role="region" aria-labelledby="slide7-title" tabindex="-1">
+            <h2 id="slide7-title">Analogía del Ajedrez: Multiplicar, No Sustituir</h2>
+            <div class="analogy-section">
+                <h3>♟️ Grandes Maestros + Motores = Mejor Juego</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Datos que no mienten:</h4>
+                        <ul class="styled-list">
+                            <li><strong>+55,8% velocidad</strong> con GitHub Copilot (RCT)</li>
+                            <li><strong>−40% tiempo</strong> en tareas complejas (MIT)</li>
+                            <li><strong>+18% calidad</strong> del código resultante (MIT)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>La pregunta clave:</h4>
+                        <p class="text-accent font-bold">¿Estoy usando la IA para hacer mejor mi trabajo o compitiendo contra ella?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Problema Real -->
+        <section class="slide" role="region" aria-labelledby="slide8-title" tabindex="-1">
+            <h2 id="slide8-title">El Problema Real: Integración, No Capacidad</h2>
+            <div class="content-wrapper">
+                <div class="stat-card mb-4">
+                    <div class="stat-number text-error">95%</div>
+                    <div class="stat-label">de los pilotos de IA fallan por mala integración<br>(MIT NANDA 2025)</div>
+                </div>
+                <div class="quote">
+                    No es falta de IA, es falta de <strong>sistema</strong>
+                </div>
+                <div class="two-column">
+                    <div class="technique-card">
+                        <h4>❌ Lo que NO funciona:</h4>
+                        <ul>
+                            <li>Herramientas aisladas</li>
+                            <li>Sin contexto organizacional</li>
+                            <li>Prompts genéricos</li>
+                            <li>Sin verificación</li>
+                        </ul>
+                    </div>
+                    <div class="technique-card">
+                        <h4>✅ Lo que SÍ funciona:</h4>
+                        <ul>
+                            <li>Integración en flujos existentes</li>
+                            <li>Contexto rico y específico</li>
+                            <li>Templates personalizados</li>
+                            <li>Verificación automática y guardarraíles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Patrón del 5% Exitoso -->
+        <section class="slide" role="region" aria-labelledby="slide9-title" tabindex="-1">
+            <h2 id="slide9-title">El Patrón del 5% Exitoso: Propiedad Distribuida</h2>
+            <div class="content-wrapper">
+                <div class="problem-vs-reality">
+                    <div class="problem-box">
+                        <h4>❌ Modelo que falla (95%):</h4>
+                        <h3 style="color: var(--color-error); margin-bottom: var(--space-4);">Lab Central de IA</h3>
+                        <ul class="styled-list">
+                            <li>Equipo especializado decide para todos</li>
+                            <li>Soluciones genéricas sin contexto</li>
+                            <li>Equipos reciben herramientas impuestas</li>
+                            <li>Sin ownership ni integración real</li>
+                        </ul>
+                        <p style="margin-top: var(--space-4);"><strong>Resultado:</strong> Pilotos que no generan valor</p>
+                    </div>
+                    <div class="reality-box">
+                        <h4>✅ Modelo que triunfa (5%):</h4>
+                        <h3 style="color: var(--color-success); margin-bottom: var(--space-4);">Seniors Distribuidos Lideran</h3>
+                        <ul class="styled-list">
+                            <li>Cada senior lidera IA en su dominio</li>
+                            <li>Conocimiento específico del contexto</li>
+                            <li>Integración profunda en workflows</li>
+                            <li>Autoridad para cambiar procesos</li>
+                        </ul>
+                        <p style="margin-top: var(--space-4);"><strong>Resultado:</strong> ROI medible y escalable</p>
+                    </div>
+                </div>
+                
+                <div class="analogy-section" style="margin-top: var(--space-6);">
+                    <h4>💡 Estrategia Buy vs Build (MIT NANDA)</h4>
+                    <div class="two-column" style="text-align: center; margin-top: var(--space-4);">
+                        <div class="stat-card">
+                            <p><strong>Comprar herramientas especializadas</strong></p>
+                            <div class="stat-number text-success">67%</div>
+                            <p class="stat-label">tasa de éxito</p>
+                        </div>
+                        <div class="stat-card">
+                            <p><strong>Desarrollar internamente</strong></p>
+                            <div class="stat-number text-error">33%</div>
+                            <p class="stat-label">tasa de éxito</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: var(--space-4); text-align: center;"><strong>Enfoque ganador:</strong> Comprar herramientas + integrar con context engineering senior</p>
+                </div>
+
+                <div class="quote" style="margin-top: var(--space-4);">
+                    <strong>Cada senior SRE, Infra, Dev lidera IA en su área</strong> – no labs centrales desconectados de la operación real
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Objeciones Legítimas -->
+        <section class="slide" role="region" aria-labelledby="slide10-title" tabindex="-1">
+            <h2 id="slide10-title">Objeciones Legítimas Reconocidas</h2>
+            <div class="content-wrapper">
+                <div class="technique-card">
+                    <h4>✅ Donde la IA aún necesita criterio senior:</h4>
+                    <ul class="styled-list">
+                        <li>Decisiones arquitectónicas con trade-offs organizativos complejos</li>
+                        <li>Race conditions distribuidas difíciles de reproducir</li>
+                        <li>Contexto histórico del "por qué" detrás de decisiones</li>
+                    </ul>
+                </div>
+                <div class="quote">
+                    Incluso aquí, la IA <strong>acelera la exploración de opciones</strong> y la documentación de hipótesis. El criterio senior decide.
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Adopción y Resistencia -->
+        <section class="slide" role="region" aria-labelledby="slide11-title" tabindex="-1">
+            <h2 id="slide11-title">Adopción y Resistencia</h2>
+            <div class="three-column">
+                <div class="stat-card">
+                    <div class="stat-number text-error">39%</div>
+                    <div class="stat-label">Adopción en ingenieros 40+</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #f59e0b;">78%</div>
+                    <div class="stat-label">Shadow AI / BYOAI</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number text-error">−9%</div>
+                    <div class="stat-label">Percepción de competencia</div>
+                </div>
+            </div>
+            <div class="problem-vs-reality">
+                <div class="problem-box">
+                    <h4>Problema:</h4>
+                    <p>Los seniors evitan IA por miedo a parecer menos competentes</p>
+                    <p>El fenómeno Shadow AI implica riesgos de fugas de datos si se usan herramientas no aprobadas</p>
+                </div>
+                <div class="reality-box">
+                    <h4>Oportunidad:</h4>
+                    <p>El 84% de desarrolladores ya usan o planean usar IA; el 51% la utiliza a diario</p>
+                    <p>Quienes adoptan primero obtienen una ventaja competitiva masiva</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: Plan 30 Días -->
+        <section class="slide" role="region" aria-labelledby="slide12-title" tabindex="-1">
+            <h2 id="slide12-title">Plan Táctico: 30 Días para Exprimir IA</h2>
+            <div class="content-wrapper">
+                <div class="two-column">
+                    <div class="week-card">
+                        <h4>📚 Semana 1: RAG mínimo</h4>
+                        <p>Ingiere documentación, runbooks y postmortems en un vector store</p>
+                        <p><strong>Entregable:</strong> Base de conocimiento indexada</p>
+                    </div>
+                    <div class="week-card">
+                        <h4>📋 Semana 2: Paquete de Contexto</h4>
+                        <p>Estandariza topología, configs sanitizadas, outputs, métricas y tu hipótesis</p>
+                        <p><strong>Entregable:</strong> Template versionado y documentado</p>
+                    </div>
+                </div>
+                <div class="two-column mt-4">
+                    <div class="week-card">
+                        <h4>📊 Semana 3: Métricas Before/After</h4>
+                        <p>Mide MTTA, MTTR, throughput, defectos y tiempo de code review</p>
+                        <p><strong>Entregable:</strong> Dashboard con baseline y tendencias</p>
+                    </div>
+                    <div class="week-card">
+                        <h4>🔒 Semana 4: Verificación Obligatoria</h4>
+                        <p>Tests automatizados, lint, dry-runs, peer review y auditoría de cambios</p>
+                        <p><strong>Entregable:</strong> Checklist obligatorio integrado en tu workflow</p>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: var(--space-6); 
+                          font-size: var(--font-base); color: var(--color-text-light); font-style: italic;">
+                    * Framework basado en metodologías validadas por Microsoft, Anthropic, GetDX 
+                    y métricas estándar IT (MTTA/MTTR - Atlassian, SecurityScorecard)
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 13: Semana 1 Detalle ACTUALIZADA -->
+        <section class="slide" role="region" aria-labelledby="slide13-title" tabindex="-1">
+            <h2 id="slide13-title">Semana 1: RAG Mínimo en Detalle</h2>
+            <div class="content-wrapper">
+                <h3>🎯 Objetivo: IA con acceso a tu contexto organizacional</h3>
+                <div class="two-column">
+                    <div class="technique-card">
+                        <h4>📁 Construye una base de conocimiento con:</h4>
+                        <ul class="styled-list">
+                            <li>Documentación técnica</li>
+                            <li>Runbooks y procedimientos</li>
+                            <li>Postmortems históricos</li>
+                            <li>Configuraciones estándar</li>
+                            <li>Roles y permisos sanitizados (KMS)</li>
+                        </ul>
+                    </div>
+                    <div class="technique-card">
+                        <h4>🛠️ Herramientas sugeridas (según infraestructura):</h4>
+                        <ul class="styled-list">
+                            <li><strong>Si usas Google Workspace:</strong> Gemini Business/Enterprise (acceso nativo a Drive)</li>
+                            <li><strong>Control granular:</strong> Claude Projects, ChatGPT Enterprise</li>
+                            <li><strong>Búsqueda empresarial:</strong> Glean, Guru, Confluence AI</li>
+                            <li><strong>Más customización:</strong> LangChain/LlamaIndex + APIs</li>
+                            <li><strong>Clave:</strong> Metadatos claros y políticas de acceso</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">☑</div>
+                    <div class="stat-label">Entregable: Base de conocimiento consultable con permisos adecuados</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Semanas 2–4 Detalle ACTUALIZADA -->
+        <section class="slide" role="region" aria-labelledby="slide14-title" tabindex="-1">
+            <h2 id="slide14-title">Semanas 2–4: Construye el Sistema</h2>
+            <div class="content-wrapper">
+                <div class="technique-card mb-4">
+                    <h4>📋 Semana 2: Template de Contexto</h4>
+                    <p><strong>Componentes:</strong> Topología, configs sanitizadas, outputs de comandos, SLO/métricas y hipótesis iniciales.</p>
+                    <p><strong>Entregable:</strong> Template versionado y documentado, con controles de acceso.</p>
+                </div>
+                <div class="technique-card mb-4">
+                    <h4>📊 Semana 3: Dashboard de ROI</h4>
+                    <p><strong>Métricas clave:</strong></p>
+                    <ul class="styled-list">
+                        <li><strong>MTTA</strong> (Mean Time To Acknowledge): Cuánto tardas en empezar a trabajar en un problema</li>
+                        <li><strong>MTTR</strong> (Mean Time To Resolve): Cuánto tardas en resolverlo completamente</li>
+                        <li><strong>Tiempo de PR/code review:</strong> De inicio a merge</li>
+                        <li><strong>Defectos:</strong> Encontrados en pre-prod vs prod</li>
+                        <li><strong>Throughput:</strong> Tareas/tickets completados por sprint</li>
+                    </ul>
+                    <p><strong>Entregable:</strong> Dashboard con baseline cuantitativo y tendencias.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🔒 Semana 4: Checklist de Verificación</h4>
+                    <p><strong>Requisitos obligatorios:</strong></p>
+                    <ul class="styled-list">
+                        <li><strong>Tests automatizados</strong> (unit/integration según aplique)</li>
+                        <li><strong>Verificación de calidad/seguridad:</strong> Linters y análisis estático (detectan bugs, vulnerabilidades y problemas de estilo sin ejecutar el código)</li>
+                        <li><strong>Dry-runs</strong> en staging</li>
+                        <li><strong>Peer review</strong> enfocado en lógica de negocio (no sintaxis)</li>
+                        <li><strong>Audit trail</strong> y control de acceso</li>
+                    </ul>
+                    <p><strong>Entregable:</strong> Checklist obligatorio integrado en tu workflow y políticas de acceso.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Sistema sobre Modelo -->
+        <section class="slide" role="region" aria-labelledby="slide15-title" tabindex="-1">
+            <h2 id="slide15-title">La Diferencia: Sistema sobre Modelo</h2>
+            <div class="content-wrapper">
+                <div class="analogy-section">
+                    <h3>🗂️ Construir Sistemas, no solo usar modelos</h3>
+                    <div class="two-column">
+                        <div>
+                            <h4>📈 Evidencia emergente:</h4>
+                            <ul class="styled-list">
+                                <li><strong>NetConfEval:</strong> LLMs funcionan cuando se aporta topología y outputs, pero fallan sin guardarraíles.</li>
+                                <li><strong>IETF NMRG:</strong> Estándares para evaluar agentes LLM en configuración intent-driven.</li>
+                                <li>Prácticas estandarizadas &gt; magia</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>🔑 Factores críticos:</h4>
+                            <ul class="styled-list">
+                                <li>Contexto rico y específico</li>
+                                <li>Integración en workflows existentes</li>
+                                <li>Verificación automática (tests, lint, auditoría)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="quote">
+                    Lo que separa a los ganadores no es el modelo, sino el <strong>sistema alrededor del modelo</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 16: La Elección -->
+        <section class="slide" role="region" aria-labelledby="slide16-title" tabindex="-1">
+            <h2 id="slide16-title">La Elección: Escalar o Estancarse</h2>
+            <div class="content-wrapper">
+                <div class="two-column">
+                    <div class="technique-card">
+                        <h4>👶 Junior:</h4>
+                        <p>Acelera aprendizaje: <span class="text-accent">2–3× más rápido</span></p>
+                    </div>
+                    <div class="technique-card">
+                        <h4>🚀 Mid-level:</h4>
+                        <p>Multiplica productividad: <span class="text-accent">4–5× throughput</span></p>
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div class="technique-card">
+                        <h4>🎯 Senior:</h4>
+                        <p>Resuelve lo "intractable": <span class="text-accent">10× capacidad</span></p>
+                    </div>
+                    <div class="technique-card">
+                        <h4>âš¡ Staff+:</h4>
+                        <p>Valida arquitecturas audaces con prototipos en días, no meses</p>
+                    </div>
+                </div>
+                <div class="quote">
+                    La experiencia no se vuelve obsoleta; se convierte en el multiplicador más poderoso
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 17: Conclusión REESCRITA -->
+        <section class="slide" role="region" aria-labelledby="slide17-title" tabindex="-1">
+            <h2 id="slide17-title">Conclusión: La IA Escala Tu Criterio</h2>
+            <div class="content-wrapper">
+                <div class="quote" style="margin-bottom: var(--space-6);">
+                    La IA no reemplaza la pericia; la <strong>multiplica</strong>
+                </div>
+                
+                <div class="analogy-section">
+                    <h3>🎯 Insights fundamentales:</h3>
+                    <ul class="styled-list">
+                        <li>Lo que separa a los ganadores no es el modelo, es el <strong>sistema alrededor del modelo</strong></li>
+                        <li>La experiencia senior es el <strong>contexto más valioso</strong> – imposible de replicar con prompts genéricos</li>
+                        <li><strong>Context engineering</strong> es la nueva ventaja competitiva diferenciadora</li>
+                        <li><strong>Propiedad distribuida</strong> (patrón del 5% exitoso) vs labs centrales desconectados (95% que falla)</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-vs-reality" style="margin-top: var(--space-6);">
+                    <div class="problem-box">
+                        <h4>❌ El mito:</h4>
+                        <p style="font-size: var(--font-lg); font-weight: 600;">"La IA es la solución"</p>
+                    </div>
+                    <div class="reality-box">
+                        <h4>✅ La realidad:</h4>
+                        <p style="font-size: var(--font-lg); font-weight: 600;">"El sistema alrededor de la IA es lo que genera valor real"</p>
+                    </div>
+                </div>
+                
+                <div class="analogy-section" style="margin-top: var(--space-6);">
+                    <h4>📋 Sobre el plan de 30 días:</h4>
+                    <p>Es un <strong>framework de inicio</strong>, no una fórmula mágica. El éxito depende de la disciplina organizacional para empoderar seniors distribuidos con ownership real, no de seguir un cronograma al pie de la letra.</p>
+                </div>
+
+                <p style="text-align: center; margin-top: var(--space-8); padding: 1.5rem; 
+                          background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-alt) 100%); 
+                          border-radius: 12px; border-left: 4px solid var(--color-accent);
+                          font-size: var(--font-xl); font-weight: 600; color: var(--color-primary);">
+                    Los que ganan construyen el sistema:<br>
+                    <strong>contexto + integración + verificación</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 18: Referencias -->
+        <section class="slide" role="region" aria-labelledby="slide18-title" tabindex="-1">
+            <h2 id="slide18-title">Referencias</h2>
+            <div class="content-wrapper" style="text-align:left;">
+                <ol>
+                    <li><strong>AlphaDev –</strong> Nature + blog de DeepMind: mejoras 70% (secuencias cortas) y 1,7% (largas) integradas en libc++.</li>
+                    <li><strong>Meta RCA (2024) –</strong> Ingeniería en Meta: 42% de acierto al crear la investigación inicial.</li>
+                    <li><strong>MIT – Science (2023) –</strong> −40% tiempo, +18% calidad en tareas profesionales con ChatGPT.</li>
+                    <li><strong>GitHub Copilot –</strong> RCT con +55,8% de velocidad; mejoras percibidas en foco y carga mental.</li>
+                    <li><strong>MIT NANDA (2025) –</strong> 95% de pilotos no impactan P&L por integración deficiente. 67% éxito comprando herramientas vs 33% desarrollando internamente.</li>
+                    <li><strong>MCP (Anthropic, 2024) –</strong> Protocolo abierto para conectar datos y herramientas y dar contexto vivo a los LLMs.</li>
+                    <li><strong>NetConfEval (CoNEXT'24) –</strong> Capacidades/limitaciones de LLMs para configuración de red.</li>
+                    <li><strong>RAG –</strong> Guías de AWS Prescriptive Guidance + TechTarget para buenas prácticas empresariales.</li>
+                    <li><strong>Adopción Dev (Stack Overflow 2025) –</strong> 84% usan o planean usar IA; 51% de profesionales la usan a diario.</li>
+                    <li><strong>Shadow AI (Work Trend Index 2024) –</strong> 78% de usuarios traen sus propias herramientas de IA.</li>
+                </ol>
+                <p style="font-size: var(--font-base); color: var(--color-text-light); margin-top: var(--space-4);">Estas referencias apoyan los datos y casos citados a lo largo de la presentación.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="printBtn">🖨 Exportar PDF</button>
+        <button class="nav-btn" id="helpBtn">❓ Ayuda</button>
+        <button class="nav-btn" id="prevBtn">← Anterior</button>
+        <span class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">18</span>
+        </span>
+        <button class="nav-btn" id="nextBtn">Siguiente →</button>
+    </div>
+
+    <script>
+        (function() {
+            let currentSlideIndex = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            const currentSlideEl = document.getElementById('currentSlide');
+            const totalSlidesEl = document.getElementById('totalSlides');
+            totalSlidesEl.textContent = totalSlides;
+
+            const progressFill = document.getElementById('progressFill');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const helpBtn = document.getElementById('helpBtn');
+            const printBtn = document.getElementById('printBtn');
+
+            function updateProgressBar() {
+                const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
+                progressFill.style.width = progress + '%';
+            }
+
+            function showSlide(index, updateHash = true) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                const newSlide = slides[index];
+                newSlide.classList.add('active');
+                currentSlideEl.textContent = index + 1;
+
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === totalSlides - 1;
+                updateProgressBar();
+                newSlide.focus();
+
+                if (updateHash) {
+                    const hash = '#' + (index + 1);
+                    history.replaceState(null, '', hash);
+                    try {
+                        localStorage.setItem('lastSlide', String(index));
+                    } catch (e) {}
+                }
+            }
+
+            function changeSlide(direction) {
+                const newIndex = currentSlideIndex + direction;
+                if (newIndex >= 0 && newIndex < totalSlides) {
+                    currentSlideIndex = newIndex;
+                    showSlide(newIndex);
+                }
+            }
+
+            document.addEventListener('keydown', function(event) {
+                const key = event.key;
+                if (key === 'ArrowLeft' || key === 'ArrowUp') {
+                    event.preventDefault();
+                    changeSlide(-1);
+                } else if (key === 'ArrowRight' || key === 'ArrowDown' || key === ' ') {
+                    event.preventDefault();
+                    changeSlide(1);
+                } else if (key === 'Home') {
+                    event.preventDefault();
+                    currentSlideIndex = 0;
+                    showSlide(currentSlideIndex);
+                } else if (key === 'End') {
+                    event.preventDefault();
+                    currentSlideIndex = totalSlides - 1;
+                    showSlide(currentSlideIndex);
+                } else if (key.toLowerCase() === 'h') {
+                    event.preventDefault();
+                    showHelp();
+                } else if (key.toLowerCase() === 'p') {
+                    event.preventDefault();
+                    window.print();
+                }
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+            document.addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+            });
+            document.addEventListener('touchend', function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        changeSlide(1);
+                    } else {
+                        changeSlide(-1);
+                    }
+                }
+            }
+
+            prevBtn.addEventListener('click', () => changeSlide(-1));
+            nextBtn.addEventListener('click', () => changeSlide(1));
+            printBtn.addEventListener('click', () => window.print());
+            helpBtn.addEventListener('click', showHelp);
+
+            function showHelp() {
+                alert('Navegación de la presentación:\n\n' +
+                      '←/↑: Slide anterior\n' +
+                      '→/↓/Espacio: Slide siguiente\n' +
+                      'Inicio: Primera slide\n' +
+                      'Fin: Última slide\n' +
+                      'H: Mostrar esta ayuda\n' +
+                      'P: Imprimir PDF');
+            }
+
+            let navigationTimeout;
+            const navigationEl = document.querySelector('.navigation');
+            function resetNavigationTimeout() {
+                clearTimeout(navigationTimeout);
+                navigationEl.style.opacity = '1';
+                navigationTimeout = setTimeout(() => {
+                    navigationEl.style.opacity = '0.8';
+                }, 4000);
+            }
+            document.addEventListener('mousemove', resetNavigationTimeout);
+            document.addEventListener('keydown', resetNavigationTimeout);
+            document.addEventListener('touchstart', resetNavigationTimeout);
+            resetNavigationTimeout();
+
+            function initFromHash() {
+                let indexFromHash = null;
+                if (location.hash) {
+                    const num = parseInt(location.hash.replace('#', ''), 10);
+                    if (!isNaN(num) && num >= 1 && num <= totalSlides) {
+                        indexFromHash = num - 1;
+                    }
+                }
+                if (indexFromHash !== null) {
+                    currentSlideIndex = indexFromHash;
+                    showSlide(currentSlideIndex, false);
+                    return;
+                }
+                try {
+                    const saved = parseInt(localStorage.getItem('lastSlide') || '', 10);
+                    if (!isNaN(saved) && saved >= 0 && saved < totalSlides) {
+                        currentSlideIndex = saved;
+                    }
+                } catch (e) {}
+                showSlide(currentSlideIndex, false);
+            }
+
+            initFromHash();
+        })();
+    </script>
+</body>
+</html>
