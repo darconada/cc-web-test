@@ -6,7 +6,7 @@ import path from 'path'
 // GET document content
 export async function GET(
   request: NextRequest,
-  { params }: { params: { levelSlug: string; docSlug: string } }
+  context: { params: Promise<{ levelSlug: string; docSlug: string }> }
 ) {
   const cookie = request.cookies.get('ce-admin-auth')
   if (cookie?.value !== 'authenticated') {
@@ -14,7 +14,8 @@ export async function GET(
   }
 
   try {
-    const document = getDocumentBySlug(params.levelSlug, params.docSlug)
+    const { levelSlug, docSlug } = await context.params
+    const document = getDocumentBySlug(levelSlug, docSlug)
 
     if (!document) {
       return NextResponse.json({ error: 'Document not found' }, { status: 404 })
@@ -33,7 +34,7 @@ export async function GET(
 // PUT (update) document content
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { levelSlug: string; docSlug: string } }
+  context: { params: Promise<{ levelSlug: string; docSlug: string }> }
 ) {
   const cookie = request.cookies.get('ce-admin-auth')
   if (cookie?.value !== 'authenticated') {
@@ -41,8 +42,9 @@ export async function PUT(
   }
 
   try {
+    const { levelSlug, docSlug } = await context.params
     const { content } = await request.json()
-    const document = getDocumentBySlug(params.levelSlug, params.docSlug)
+    const document = getDocumentBySlug(levelSlug, docSlug)
 
     if (!document) {
       return NextResponse.json({ error: 'Document not found' }, { status: 404 })
