@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       response.cookies.set('ce-admin-auth', 'authenticated', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'lax', // Changed from 'strict' to allow access from different IPs
         maxAge: 60 * 60 * 24, // 24 hours
         path: '/',
       })
