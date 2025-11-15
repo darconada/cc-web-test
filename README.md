@@ -13,7 +13,7 @@ Sitio web para visualizar y gestionar la documentación del Context Engineering 
 - ✅ Breadcrumbs y navegación intuitiva
 
 ### FASE 2 - Administración ✅
-- ✅ Sistema de autenticación con password (`t0k0m0tx0!`)
+- ✅ Sistema de autenticación con password (`t0k0xxxxx seguro`)
 - ✅ Dashboard de administración completo
 - ✅ Editor Monaco (VS Code) con preview en tiempo real
 - ✅ Upload y reemplazo de archivos (.md, .pdf, .html)
@@ -64,7 +64,7 @@ Cambiar tema: Click en el ícono de paleta 🎨 en la esquina superior derecha.
 
 ### Acceso
 1. Ir a `http://localhost:3000/admin`
-2. Password: `t0k0m0tx0!`
+2. Password: `t0k0xxxxx seguro`
 
 ### Funciones del Admin
 
@@ -219,7 +219,7 @@ npm run build
 - Comprueba los permisos de lectura del directorio
 
 ### "Error al autenticar"
-- Verifica que el password sea correcto: `t0k0m0tx0!`
+- Verifica que el password sea correcto: `t0k0xxxxx seguro`
 - Limpia las cookies del navegador
 
 ### "Puerto 3000 ya en uso"
